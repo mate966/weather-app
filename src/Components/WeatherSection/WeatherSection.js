@@ -2,11 +2,9 @@ import {
     MainInfo,
     ForecastWrapper,
     MainSpan,
-    MainIcon,
     MainParagraph,
     MainTemp,
     ForecastDetails,
-    TestIcon,
     ForecastDetailsContainer,
 } from "./WeatherSectionStyled";
 
@@ -23,21 +21,10 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
     return (
         <ForecastWrapper>
             <Icons icon={icon} />
-            <i
-                className="wi-day-sunny"
-                style={{
-                    color: "red",
-                    width: "50px",
-                    height: "50px",
-                    fontSize: "2rem",
-                    backgroundColor: "green",
-                }}
-            />
             <MainTemp>{mainTemp}°C</MainTemp>
             <h1>{current.name}</h1>
             <h2>{coords.lat}</h2>
             <MainInfo>
-                <MainIcon></MainIcon>
                 <p>
                     <MainSpan></MainSpan>
                 </p>

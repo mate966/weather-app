@@ -52,12 +52,3 @@ export const MainSpan = styled.span`
 export const MainParagraph = styled.p`
     /* color: white; */
 `;
-
-export const MainIcon = styled.i`
-    width: 50px;
-    height: 50px;
-    vertical-align: middle;
-    font-size: 3rem;
-    color: red;
-    background-color: red;
-`;

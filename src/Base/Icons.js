@@ -1,38 +1,64 @@
-import { MainIcon } from "../Components/WeatherSection/WeatherSectionStyled";
+import React from "react";
+import styled from "styled-components";
+
+import {
+    WeatherSunny,
+    WeatherPartlyCloudyDay,
+    WeatherCloudy,
+    WeatherRain,
+    WeatherThunderstorm,
+    WeatherSnow,
+    WeatherFog,
+    WeatherMoon,
+    WeatherPartlyCloudyNight,
+    WeatherRainShowersNight,
+    WeatherSnowShowerNight,
+} from "@styled-icons/fluentui-system-filled";
+import { Component } from "react/cjs/react.production.min";
+
+const SunnyIcon = styled(WeatherSunny)`
+    color: white;
+`;
+const CloudyIcon = styled(WeatherCloudy)`
+    color: white;
+`;
 
 const Icons = ({ icon }) => {
     const iconsList = {
-        "01d": "wi-day-sunny",
-        "02d": "wi-day-cloudy",
-        "03d": "wi-cloud",
-        "04d": "wi-cloud",
-        "09d": "wi-day-rain",
-        "10d": "wi-day-rain-wind",
-        "11d": "wi-day-thunderstorm",
-        "13d": "wi-day-snow",
-        "50d": "wi-day-fog",
-        "01n": "wi-moon-new",
-        "02n": "wi-night-partly-cloudy",
-        "03n": "wi-night-cloudy",
-        "04n": "wi-cloudy",
-        "09n": "wi-night-rain",
-        "10n": "wi-night-showers",
-        "11n": "wi-night-storm-showers",
-        "13n": "wi-night-snow",
-        "50n": "wi-night-fog",
+        "01d": WeatherSunny,
+        "02d": WeatherPartlyCloudyDay,
+        "03d": CloudyIcon,
+        "04d": CloudyIcon,
+        "09d": WeatherRain,
+        "10d": WeatherRain,
+        "11d": WeatherThunderstorm,
+        "13d": WeatherSnow,
+        "50d": WeatherFog,
+        "01n": WeatherMoon,
+        "02n": WeatherPartlyCloudyNight,
+        "03n": WeatherPartlyCloudyNight,
+        "04n": CloudyIcon,
+        "09n": WeatherRainShowersNight,
+        "10n": WeatherRainShowersNight,
+        "11n": WeatherThunderstorm,
+        "13n": WeatherSnowShowerNight,
+        "50n": WeatherFog,
     };
 
-    const customIcon = () => {
+    const switchIcon = () => {
         for (const key in iconsList) {
             if (iconsList.hasOwnProperty(key)) {
                 if (icon === key) {
-                    return "wi " + iconsList[key];
+                    // console.log(iconsList[key]);
+                    return iconsList[key];
                 }
             }
         }
     };
+    const checkIcon = switchIcon();
 
-    return <MainIcon className={customIcon()}></MainIcon>;
+    return React.createElement(checkIcon);
+    // return <CloudyIcon />;
 };
 
 export default Icons;
