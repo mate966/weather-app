@@ -6,22 +6,18 @@ const {
 } = Theme;
 
 export const SectionForm = styled.section`
-    position: relative;
-    /* margin: 10px; */
-    min-height: 20vh;
+    margin: 50px auto;
+    max-width: 320px;
 `;
 
 export const LocationForm = styled.form`
-    position: absolute;
-    top: 40%;
-    left: 50%;
     display: flex;
-    width: 80%;
+    margin: 0 auto;
+    width: 95%;
     padding: 0 20px;
     border: 1px solid ${lightGreen};
     background-color: white;
     border-radius: 7px;
-    transform: translate(-50%, 0);
 `;
 
 export const InputLocation = styled.input`
@@ -36,7 +32,6 @@ export const InputLocation = styled.input`
 `;
 
 export const SubmitLocation = styled.button`
-    margin-left: 10px;
     border: none;
     font-size: 20px;
     background-color: transparent;

@@ -9,11 +9,10 @@ const {
 export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    margin: 20px 10px;
 `;
 
 export const Heading = styled.h1`
-    margin-left: 15px;
     font-size: 1.9rem;
     font-weight: ${regular};
     color: ${lightGreen};
@@ -21,7 +20,6 @@ export const Heading = styled.h1`
 
 export const Socials = styled.div`
     display: flex;
-    margin-right: 10px;
 `;
 
 export const SocialLinks = styled.a`

@@ -3,8 +3,6 @@ import backgroundImage from "../images/background.jpg";
 import Theme from "./theme";
 
 const {
-    // colors: { primaryColor },
-    // regular, bold
     typography: { baseFont },
 } = Theme;
 
@@ -20,7 +18,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        /* min-height: 100vh; */
         background-image: url(${backgroundImage});
         background-repeat: no-repeat;
         background-size: cover;
