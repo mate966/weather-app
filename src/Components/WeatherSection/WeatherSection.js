@@ -1,23 +1,51 @@
+import { useState, useEffect } from "react";
+
 import {
-    WeatherInfoSection,
-    CurrentTemp,
-    InfoHeading,
-    InfoParagraph,
+    WeatherSection,
+    Current,
+    CurrentContainer,
+    CurrentHeading,
     Units,
+    Paragraph,
+    LocationContainer,
+    LocationName,
+    CurrentDetails,
+    CurrentDetailsContainer,
+    DetailsUnits,
+    Forecast,
+    ForecastDaily,
 } from "./WeatherSectionStyled";
 
 import { Icons } from "../../Base/index";
 import { countriesPL } from "../../Base/index";
 
 const Weather = ({ current, coords, forecast, getForecast }) => {
+    const [time, setTime] = useState(new Date());
+
     const mainTemp = current.main.temp.toFixed();
     const icon = current.weather[0].icon;
     const description = current.weather[0].description;
-    const dailyForecast = forecast.daily.map((day) => day);
+    const country = current.sys.country;
     const currentTime = new Date().toLocaleTimeString();
     const currentDate = new Date().toLocaleDateString();
-    const country = current.sys.country;
+    const feelTemp = current.main.feels_like.toFixed();
+    const pressure = current.main.pressure;
+    const wind = current.wind.speed;
+    const humidity = current.main.humidity;
+    const sunrise = new Date(
+        current.sys.sunrise * 1000 + current.timezone * 1000
+    )
+        .toISOString()
+        .slice(11, -8);
+    const sunset = new Date(current.sys.sunset * 1000 + current.timezone * 1000)
+        .toISOString()
+        .slice(11, -8);
+
+    const dailyForecast = forecast.daily.map((day) => day);
+    // const forecastIcon = dailyForecast[0].weather[0].icon;
     console.log(current);
+    const bigIcon = 70;
+    const smallIcon = 50;
 
     const countryFullName = () => {
         for (const key in countriesPL) {
@@ -29,44 +57,98 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
         }
     };
 
-    const bigIcon = 120;
-    const smallIcon = 50;
+    // useEffect(() => {
+    //     function tick() {
+    //         setTime(new Date());
+    //     }
+
+    //     let timer = setInterval(() => tick(), 1000);
+
+    //     return function cleanup() {
+    //         clearInterval(timer);
+    //     };
+    // }, []);
 
     return (
-        <WeatherInfoSection>
-            <CurrentTemp>
-                <InfoHeading>
+        <WeatherSection>
+            <Current>
+                <CurrentHeading>
                     {mainTemp}
                     <Units>°C</Units>
-                </InfoHeading>
-                <Icons icon={icon} size={bigIcon} />
-                <InfoParagraph>{description}</InfoParagraph>
-            </CurrentTemp>
-            <CurrentTemp>
-                <InfoHeading>{current.name},</InfoHeading>
-                <InfoHeading>{countryFullName()}</InfoHeading>
-                <InfoParagraph>
-                    {currentTime} {currentDate}
-                </InfoParagraph>
-            </CurrentTemp>
-            {/* <MainInfo>
-                <Icons icon={icon} size={bigIcon} />
-                <MainTemp>{mainTemp}°C</MainTemp>
-                <h1>{current.name}</h1>
-                <h1>{countryFullName()}</h1>
-                <h2>
-                    {currentTime} {currentDate}
-                </h2>
-                <h2>{description}</h2>
-                <MainParagraph>Piątek 8 Października</MainParagraph>
-            </MainInfo> */}
-            {/* <ForecastDetailsContainer>
-                <ForecastDetails>Godzina Zachodu</ForecastDetails>
-                <ForecastDetails>Godzina Zachodu</ForecastDetails>
-                <ForecastDetails>Wiglotność</ForecastDetails>
-                <ForecastDetails>Ciśnienie</ForecastDetails>
-            </ForecastDetailsContainer> */}
-        </WeatherInfoSection>
+                </CurrentHeading>
+                <CurrentContainer>
+                    <Icons icon={icon} size={bigIcon} />
+                    <Paragraph>{description}</Paragraph>
+                </CurrentContainer>
+            </Current>
+            <LocationContainer>
+                <LocationName>{current.name},</LocationName>
+                <LocationName>{countryFullName()}</LocationName>
+                <Paragraph>Środa, {currentDate}</Paragraph>
+                <Paragraph>{time.toLocaleTimeString()}</Paragraph>
+            </LocationContainer>
+            <CurrentDetails>
+                <CurrentDetailsContainer>
+                    <Paragraph>
+                        {feelTemp}
+                        <DetailsUnits>°C</DetailsUnits>
+                    </Paragraph>
+                    <Paragraph>Temperatura odczuwalna</Paragraph>
+                </CurrentDetailsContainer>
+                <CurrentDetailsContainer>
+                    <Paragraph>{pressure}hPa</Paragraph>
+                    <Paragraph>Ciśnienie</Paragraph>
+                </CurrentDetailsContainer>
+                <CurrentDetailsContainer>
+                    <Paragraph>{wind}km/h</Paragraph>
+                    <Paragraph>Prędkość wiatru</Paragraph>
+                </CurrentDetailsContainer>
+                <CurrentDetailsContainer>
+                    <Paragraph>{humidity}%</Paragraph>
+                    <Paragraph>Wiglotność</Paragraph>
+                </CurrentDetailsContainer>
+                <CurrentDetailsContainer>
+                    <Paragraph>{sunrise}</Paragraph>
+                    <Paragraph>Wschód</Paragraph>
+                </CurrentDetailsContainer>
+                <CurrentDetailsContainer>
+                    <Paragraph>{sunset}</Paragraph>
+                    <Paragraph>Zachód</Paragraph>
+                </CurrentDetailsContainer>
+            </CurrentDetails>
+            <Forecast>
+                <ForecastDaily>
+                    <CurrentDetailsContainer>
+                        <Paragraph>Wtorek</Paragraph>
+                        <Icons icon={icon} size={bigIcon} />
+                    </CurrentDetailsContainer>
+                    <CurrentDetailsContainer>
+                        <Paragraph>Wtorek</Paragraph>
+                        <Icons icon={icon} size={bigIcon} />
+                    </CurrentDetailsContainer>
+                    <CurrentDetailsContainer>
+                        <Paragraph>Wtorek</Paragraph>
+                        <Icons icon={icon} size={bigIcon} />
+                    </CurrentDetailsContainer>
+                    <CurrentDetailsContainer>
+                        <Paragraph>Wtorek</Paragraph>
+                        <Icons icon={icon} size={bigIcon} />
+                    </CurrentDetailsContainer>
+                    <CurrentDetailsContainer>
+                        <Paragraph>Wtorek</Paragraph>
+                        <Icons icon={icon} size={bigIcon} />
+                    </CurrentDetailsContainer>
+                    <CurrentDetailsContainer>
+                        <Paragraph>Wtorek</Paragraph>
+                        <Icons icon={icon} size={bigIcon} />
+                    </CurrentDetailsContainer>
+                    <CurrentDetailsContainer>
+                        <Paragraph>Wtorek</Paragraph>
+                        <Icons icon={icon} size={bigIcon} />
+                    </CurrentDetailsContainer>
+                </ForecastDaily>
+            </Forecast>
+        </WeatherSection>
     );
 };
 

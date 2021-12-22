@@ -3,40 +3,43 @@ import styled from "styled-components";
 import Theme from "../../Base/theme";
 
 const {
-    colors: { darkGreen },
+    colors: { lightGreen },
     typography: { light, regular },
 } = Theme;
 
-export const WeatherInfoSection = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    width: 95%;
-`;
-
-export const CurrentTemp = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px auto;
+const containerStyles = `
     padding: 30px 15px;
     width: 100%;
     background-color: rgba(126, 140, 123, 0.7);
     color: white;
+    `;
+
+const sectionFlex = `
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+    `;
+
+export const WeatherSection = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 100px auto;
+    width: 95%;
 `;
 
-export const InfoHeading = styled.h2`
-    text-align: center;
-    font-size: 5.5rem;
-    line-height: 0.9;
-    font-weight: ${regular};
-    color: white;
+export const Current = styled.section`
+    ${sectionFlex}
+    ${containerStyles}
 `;
-export const InfoParagraph = styled.p`
+
+export const CurrentHeading = styled.h2`
     text-align: center;
-    line-height: 0.5;
-    font-weight: 300;
+    font-size: 5.9rem;
+    line-height: 1;
+    font-weight: ${regular};
     color: white;
 `;
 
@@ -44,3 +47,60 @@ export const Units = styled.span`
     font-size: 2rem;
     vertical-align: 140%;
 `;
+
+export const CurrentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 50%;
+`;
+
+export const Paragraph = styled.p`
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: white;
+`;
+
+export const LocationContainer = styled.section`
+    ${containerStyles}
+`;
+
+export const LocationName = styled.h2`
+    text-align: center;
+    font-size: 2.7rem;
+    line-height: 1.2;
+    letter-spacing: 0.1rem;
+    font-weight: ${regular};
+    color: white;
+`;
+
+export const CurrentDetails = styled.div`
+    ${sectionFlex}
+    ${containerStyles}
+    padding: 0;
+`;
+
+export const CurrentDetailsContainer = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 50%;
+    padding: 10px 0;
+    min-height: 105px;
+
+    &:hover {
+        background: ${lightGreen};
+    }
+`;
+
+export const DetailsUnits = styled.span`
+    font-size: 1.2rem;
+`;
+
+export const Forecast = styled.section`
+    ${sectionFlex}
+    ${containerStyles}
+`;
+
+export const ForecastDaily = styled.div``;
