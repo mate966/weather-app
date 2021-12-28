@@ -15,48 +15,53 @@ import {
     WeatherSnowShowerNight,
 } from "@styled-icons/fluentui-system-filled";
 
+const iconStyles = `    
+margin: 10px;
+color: white;
+`;
+
 const SunnyIcon = styled(WeatherSunny)`
-    color: white;
+    ${iconStyles}
 `;
 
 const PartlyCloudyIcon = styled(WeatherPartlyCloudyDay)`
-    color: white;
+    ${iconStyles}
 `;
 
 const CloudyIcon = styled(WeatherCloudy)`
-    color: white;
+    ${iconStyles}
 `;
 
 const RainyIcon = styled(WeatherRain)`
-    color: white;
+    ${iconStyles}
 `;
 
 const ThunderstormIcon = styled(WeatherThunderstorm)`
-    color: white;
+    ${iconStyles}
 `;
 
 const SnowIcon = styled(WeatherSnow)`
-    color: white;
+    ${iconStyles}
 `;
 
 const FogIcon = styled(WeatherFog)`
-    color: white;
+    ${iconStyles}
 `;
 
 const MoonIcon = styled(WeatherMoon)`
-    color: white;
+    ${iconStyles}
 `;
 
 const PartlyCloudyNightIcon = styled(WeatherPartlyCloudyNight)`
-    color: white;
+    ${iconStyles}
 `;
 
 const RainShowersNightIcon = styled(WeatherRainShowersNight)`
-    color: white;
+    ${iconStyles}
 `;
 
 const SnowShowerNightIcon = styled(WeatherSnowShowerNight)`
-    color: white;
+    ${iconStyles}
 `;
 
 const Icons = ({ icon, size }) => {

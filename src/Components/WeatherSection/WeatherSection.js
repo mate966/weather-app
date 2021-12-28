@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import ForecastSection from "../ForecastSection/ForecastSection";
+
 import {
     WeatherSection,
     Current,
@@ -14,6 +16,7 @@ import {
     DetailsUnits,
     Forecast,
     ForecastDaily,
+    ForecastDailyContainer,
 } from "./WeatherSectionStyled";
 
 import { Icons } from "../../Base/index";
@@ -26,7 +29,6 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
     const icon = current.weather[0].icon;
     const description = current.weather[0].description;
     const country = current.sys.country;
-    const currentTime = new Date().toLocaleTimeString();
     const currentDate = new Date().toLocaleDateString();
     const feelTemp = current.main.feels_like.toFixed();
     const pressure = current.main.pressure;
@@ -41,11 +43,9 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
         .toISOString()
         .slice(11, -8);
 
-    const dailyForecast = forecast.daily.map((day) => day);
-    // const forecastIcon = dailyForecast[0].weather[0].icon;
-    console.log(current);
+    console.log(forecast);
+
     const bigIcon = 70;
-    const smallIcon = 50;
 
     const countryFullName = () => {
         for (const key in countriesPL) {
@@ -56,6 +56,8 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
             }
         }
     };
+
+    console.log(forecast);
 
     // useEffect(() => {
     //     function tick() {
@@ -116,38 +118,7 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
                     <Paragraph>Zachód</Paragraph>
                 </CurrentDetailsContainer>
             </CurrentDetails>
-            <Forecast>
-                <ForecastDaily>
-                    <CurrentDetailsContainer>
-                        <Paragraph>Wtorek</Paragraph>
-                        <Icons icon={icon} size={bigIcon} />
-                    </CurrentDetailsContainer>
-                    <CurrentDetailsContainer>
-                        <Paragraph>Wtorek</Paragraph>
-                        <Icons icon={icon} size={bigIcon} />
-                    </CurrentDetailsContainer>
-                    <CurrentDetailsContainer>
-                        <Paragraph>Wtorek</Paragraph>
-                        <Icons icon={icon} size={bigIcon} />
-                    </CurrentDetailsContainer>
-                    <CurrentDetailsContainer>
-                        <Paragraph>Wtorek</Paragraph>
-                        <Icons icon={icon} size={bigIcon} />
-                    </CurrentDetailsContainer>
-                    <CurrentDetailsContainer>
-                        <Paragraph>Wtorek</Paragraph>
-                        <Icons icon={icon} size={bigIcon} />
-                    </CurrentDetailsContainer>
-                    <CurrentDetailsContainer>
-                        <Paragraph>Wtorek</Paragraph>
-                        <Icons icon={icon} size={bigIcon} />
-                    </CurrentDetailsContainer>
-                    <CurrentDetailsContainer>
-                        <Paragraph>Wtorek</Paragraph>
-                        <Icons icon={icon} size={bigIcon} />
-                    </CurrentDetailsContainer>
-                </ForecastDaily>
-            </Forecast>
+            <ForecastSection forecast={forecast} />
         </WeatherSection>
     );
 };

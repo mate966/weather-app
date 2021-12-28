@@ -75,18 +75,17 @@ export const LocationName = styled.h2`
     color: white;
 `;
 
-export const CurrentDetails = styled.div`
-    ${sectionFlex}
-    ${containerStyles}
+export const CurrentDetails = styled.section`
+    ${sectionFlex};
+    ${containerStyles};
     padding: 0;
 `;
 
-export const CurrentDetailsContainer = styled.section`
+export const CurrentDetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-basis: 50%;
-    padding: 10px 0;
     min-height: 105px;
 
     &:hover {
@@ -97,10 +96,3 @@ export const CurrentDetailsContainer = styled.section`
 export const DetailsUnits = styled.span`
     font-size: 1.2rem;
 `;
-
-export const Forecast = styled.section`
-    ${sectionFlex}
-    ${containerStyles}
-`;
-
-export const ForecastDaily = styled.div``;
