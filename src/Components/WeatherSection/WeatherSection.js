@@ -24,7 +24,6 @@ import { countriesPL } from "../../Base/index";
 
 const Weather = ({ current, coords, forecast, getForecast }) => {
     const [time, setTime] = useState(new Date());
-
     const mainTemp = current.main.temp.toFixed();
     const icon = current.weather[0].icon;
     const description = current.weather[0].description;
@@ -43,7 +42,7 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
         .toISOString()
         .slice(11, -8);
 
-    console.log(forecast);
+    console.log(current);
 
     const bigIcon = 70;
 
@@ -56,8 +55,6 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
             }
         }
     };
-
-    console.log(forecast);
 
     // useEffect(() => {
     //     function tick() {

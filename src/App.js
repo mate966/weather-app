@@ -14,6 +14,10 @@ function App() {
         lat: "",
         lon: "",
     });
+    const [errorMessage, setErrorMessage] = useState({
+        inputError: false,
+        locationError: false,
+    });
 
     const getCurrent = () => {
         (async () => {
@@ -29,6 +33,7 @@ function App() {
                 });
             } catch (err) {
                 console.log(err);
+                setErrorMessage({ locationError: true });
             }
         })();
     };
@@ -59,6 +64,9 @@ function App() {
             <div className="App">
                 <Header />
                 <LocationInput
+                    setCurrent={setCurrent}
+                    errorMessage={errorMessage}
+                    setErrorMessage={setErrorMessage}
                     forecast={forecast}
                     coords={coords}
                     location={location}

@@ -12,9 +12,13 @@ import { Icons } from "../../Base/index";
 const Forecast = ({ forecast, icon }) => {
     const smallIcon = 50;
 
-    const getDailyForecast = (n) => {
-        const dailyForecast = forecast.daily.map((day) => day.temp.day);
-        return dailyForecast[n];
+    const getMaxTemp = (n) => {
+        const dailyForecast = forecast.daily.map((day) => day.temp.max);
+        return Math.round(dailyForecast[n]);
+    };
+    const getMinTemp = (n) => {
+        const dailyForecast = forecast.daily.map((day) => day.temp.min);
+        return Math.round(dailyForecast[n]);
     };
 
     const getForecastIcon = (n) => {
@@ -49,57 +53,64 @@ const Forecast = ({ forecast, icon }) => {
         <ForecastSection>
             <ForecastDailyContainer>
                 <Paragraph>{date(1)}</Paragraph>
-                <Icons icon={getForecastIcon(0)} size={smallIcon} />
+                <Icons icon={getForecastIcon(1)} size={smallIcon} />
                 <Paragraph>
-                    {getDailyForecast(0)}
+                    {getMaxTemp(1)}
+                    <DetailsUnits>°C</DetailsUnits> / {getMinTemp(1)}
                     <DetailsUnits>°C</DetailsUnits>
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
                 <Paragraph>{date(2)}</Paragraph>
-                <Icons icon={getForecastIcon(1)} size={smallIcon} />
+                <Icons icon={getForecastIcon(2)} size={smallIcon} />
                 <Paragraph>
-                    {getDailyForecast(1)}
+                    {getMaxTemp(2)}
+                    <DetailsUnits>°C</DetailsUnits> / {getMinTemp(2)}
                     <DetailsUnits>°C</DetailsUnits>
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
                 <Paragraph>{date(3)}</Paragraph>
-                <Icons icon={getForecastIcon(2)} size={smallIcon} />
+                <Icons icon={getForecastIcon(3)} size={smallIcon} />
                 <Paragraph>
-                    {getDailyForecast(2)}
+                    {getMaxTemp(3)}
+                    <DetailsUnits>°C</DetailsUnits> / {getMinTemp(3)}
                     <DetailsUnits>°C</DetailsUnits>
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
-                <Paragraph>{date(4)}</Paragraph>
-                <Icons icon={getForecastIcon(3)} size={smallIcon} />
+                <Paragraph>{date(-3)}</Paragraph>
+                <Icons icon={getForecastIcon(4)} size={smallIcon} />
                 <Paragraph>
-                    {getDailyForecast(3)}
+                    {getMaxTemp(4)}
+                    <DetailsUnits>°C</DetailsUnits> / {getMinTemp(4)}
                     <DetailsUnits>°C</DetailsUnits>
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
                 <Paragraph>{date(-2)}</Paragraph>
-                <Icons icon={getForecastIcon(4)} size={smallIcon} />
+                <Icons icon={getForecastIcon(5)} size={smallIcon} />
                 <Paragraph>
-                    {getDailyForecast(4)}
+                    {getMaxTemp(5)}
+                    <DetailsUnits>°C</DetailsUnits> / {getMinTemp(5)}
                     <DetailsUnits>°C</DetailsUnits>
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
                 <Paragraph>{date(-1)}</Paragraph>
-                <Icons icon={getForecastIcon(5)} size={smallIcon} />
+                <Icons icon={getForecastIcon(6)} size={smallIcon} />
                 <Paragraph>
-                    {getDailyForecast(5)}
+                    {getMaxTemp(6)}
+                    <DetailsUnits>°C</DetailsUnits> / {getMinTemp(6)}
                     <DetailsUnits>°C</DetailsUnits>
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
                 <Paragraph>{date(0)}</Paragraph>
-                <Icons icon={getForecastIcon(6)} size={smallIcon} />
+                <Icons icon={getForecastIcon(7)} size={smallIcon} />
                 <Paragraph>
-                    {getDailyForecast(6)}
+                    {getMaxTemp(7)}
+                    <DetailsUnits>°C</DetailsUnits> / {getMinTemp(7)}
                     <DetailsUnits>°C</DetailsUnits>
                 </Paragraph>
             </ForecastDailyContainer>

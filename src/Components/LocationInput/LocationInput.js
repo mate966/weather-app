@@ -15,6 +15,9 @@ const LocationInput = ({
     getForecast,
     coords,
     forecast,
+    setCurrent,
+    errorMessage,
+    setErrorMessage,
 }) => {
     const handleLocation = (e) => {
         setLocation(e.target.value);
@@ -22,11 +25,12 @@ const LocationInput = ({
 
     const submitLocation = (e) => {
         e.preventDefault();
-        if (!setLocation) {
-            alert("Put some location!");
+        if (!location) {
+            setErrorMessage({ inputError: true });
         } else {
             setLocation("");
             getCurrent();
+            setErrorMessage({ inputError: false });
         }
     };
 
@@ -43,6 +47,8 @@ const LocationInput = ({
                     <InputIcon className="fas fa-location-arrow"></InputIcon>
                 </SubmitLocation>
             </LocationForm>
+            {errorMessage.inputError && <h3>Wpisz nazwę miejscowości!</h3>}
+            {errorMessage.locationError && <h3>Nie ma takiej miejscowości!</h3>}
         </SectionForm>
     );
 };
