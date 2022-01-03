@@ -14,15 +14,12 @@ import {
     CurrentDetails,
     CurrentDetailsContainer,
     DetailsUnits,
-    Forecast,
-    ForecastDaily,
-    ForecastDailyContainer,
 } from "./WeatherSectionStyled";
 
 import { Icons } from "../../Base/index";
 import { countriesPL } from "../../Base/index";
 
-const Weather = ({ current, coords, forecast, getForecast }) => {
+const Weather = ({ current, forecast }) => {
     const [time, setTime] = useState(new Date());
     const mainTemp = current.main.temp.toFixed();
     const icon = current.weather[0].icon;
@@ -42,10 +39,6 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
         .toISOString()
         .slice(11, -8);
 
-    console.log(current);
-
-    const bigIcon = 70;
-
     const countryFullName = () => {
         for (const key in countriesPL) {
             if (countriesPL.hasOwnProperty(key)) {
@@ -56,17 +49,19 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
         }
     };
 
-    // useEffect(() => {
-    //     function tick() {
-    //         setTime(new Date());
-    //     }
+    useEffect(() => {
+        function tick() {
+            setTime(new Date());
+        }
 
-    //     let timer = setInterval(() => tick(), 1000);
+        let timer = setInterval(() => tick(), 1000);
 
-    //     return function cleanup() {
-    //         clearInterval(timer);
-    //     };
-    // }, []);
+        return function cleanup() {
+            clearInterval(timer);
+        };
+    }, []);
+
+    const bigIcon = 70;
 
     return (
         <WeatherSection>
@@ -92,7 +87,7 @@ const Weather = ({ current, coords, forecast, getForecast }) => {
                         {feelTemp}
                         <DetailsUnits>°C</DetailsUnits>
                     </Paragraph>
-                    <Paragraph>Temperatura odczuwalna</Paragraph>
+                    <Paragraph>Odczuwalna</Paragraph>
                 </CurrentDetailsContainer>
                 <CurrentDetailsContainer>
                     <Paragraph>{pressure}hPa</Paragraph>

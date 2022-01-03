@@ -2,22 +2,23 @@ import styled from "styled-components";
 import Theme from "../../Base/theme";
 
 const {
-    colors: { lightGreen },
+    colors: { lightGreen, darkGreen },
 } = Theme;
 
 export const SectionForm = styled.section`
-    margin: 50px auto;
+    margin: 0 auto;
     max-width: 320px;
+    min-height: 80px;
 `;
 
 export const LocationForm = styled.form`
     display: flex;
     margin: 0 auto;
-    width: 95%;
     padding: 0 20px;
+    width: 95%;
     border: 1px solid ${lightGreen};
-    background-color: white;
     border-radius: 7px;
+    background-color: white;
 `;
 
 export const InputLocation = styled.input`
@@ -39,3 +40,8 @@ export const SubmitLocation = styled.button`
 `;
 
 export const InputIcon = styled.i``;
+
+export const ErrorMessage = styled.p`
+    margin: 5px 0 0 20px;
+    color: ${darkGreen};
+`;

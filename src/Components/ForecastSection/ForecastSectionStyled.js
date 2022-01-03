@@ -12,7 +12,12 @@ export const ForecastSection = styled.section`
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    flex: 1;
     background-color: rgba(126, 140, 123, 0.7);
+
+    @media (min-width: 1024px) {
+        flex-wrap: nowrap;
+    }
 `;
 
 export const ForecastDailyContainer = styled.div`
@@ -20,11 +25,16 @@ export const ForecastDailyContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    flex: 1;
     margin: 0 auto;
-    flex-basis: 50%;
+    padding: 15px;
+    min-width: 50%;
 
     &:hover {
         background: ${lightGreen};
+    }
+
+    @media (min-width: 1024px) {
+        min-width: 0;
     }
 `;

@@ -1,9 +1,12 @@
 import { createGlobalStyle } from "styled-components";
-import backgroundImage from "../images/background.jpg";
+
 import Theme from "./theme";
+import backgroundImage from "../images/background.jpg";
+import backgroundMobileImage from "../images/background-m.jpg";
 
 const {
     typography: { baseFont },
+    breakpoints: { lg },
 } = Theme;
 
 const GlobalStyle = createGlobalStyle`
@@ -18,11 +21,15 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-image: url(${backgroundImage});
+        background-image: url(${backgroundMobileImage});
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
         font-family: ${baseFont};
+
+        @media ${lg} {
+            background-image: url(${backgroundImage});
+        }
     }
 `;
 

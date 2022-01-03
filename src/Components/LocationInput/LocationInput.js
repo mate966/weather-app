@@ -6,16 +6,13 @@ import {
     SubmitLocation,
     SectionForm,
     InputIcon,
+    ErrorMessage,
 } from "./LocationInputStyled";
 
 const LocationInput = ({
     location,
     setLocation,
     getCurrent,
-    getForecast,
-    coords,
-    forecast,
-    setCurrent,
     errorMessage,
     setErrorMessage,
 }) => {
@@ -47,8 +44,12 @@ const LocationInput = ({
                     <InputIcon className="fas fa-location-arrow"></InputIcon>
                 </SubmitLocation>
             </LocationForm>
-            {errorMessage.inputError && <h3>Wpisz nazwę miejscowości!</h3>}
-            {errorMessage.locationError && <h3>Nie ma takiej miejscowości!</h3>}
+            {errorMessage.inputError && (
+                <ErrorMessage>Wpisz nazwę miejscowości!</ErrorMessage>
+            )}
+            {errorMessage.locationError && (
+                <ErrorMessage>Nie ma takiej miejscowości!</ErrorMessage>
+            )}
         </SectionForm>
     );
 };

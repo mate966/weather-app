@@ -5,6 +5,7 @@ import Theme from "../../Base/theme";
 const {
     colors: { lightGreen },
     typography: { light, regular },
+    breakpoints: { sm, md, lg },
 } = Theme;
 
 const containerStyles = `
@@ -15,24 +16,46 @@ const containerStyles = `
     `;
 
 const sectionFlex = `
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     `;
 
 export const WeatherSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 25px;
-    margin: 100px auto;
+    margin: 0px auto;
     width: 95%;
+    cursor: default;
+
+    @media ${md} {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    @media ${lg} {
+        margin: 40px auto;
+    }
 `;
 
 export const Current = styled.section`
     ${sectionFlex}
     ${containerStyles}
+
+    @media ${sm} {
+        justify-content: space-around;
+    }
+
+    @media ${md} {
+        flex: 1;
+    }
+
+    @media ${lg} {
+        justify-content: center;
+    }
 `;
 
 export const CurrentHeading = styled.h2`
@@ -58,12 +81,16 @@ export const CurrentContainer = styled.div`
 export const Paragraph = styled.p`
     text-align: center;
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: ${light};
     color: white;
 `;
 
 export const LocationContainer = styled.section`
     ${containerStyles}
+
+    @media (min-width: 768px) {
+        flex: 1;
+    }
 `;
 
 export const LocationName = styled.h2`
@@ -79,6 +106,11 @@ export const CurrentDetails = styled.section`
     ${sectionFlex};
     ${containerStyles};
     padding: 0;
+
+    @media ${lg} {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
 `;
 
 export const CurrentDetailsContainer = styled.div`

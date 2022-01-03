@@ -1,7 +1,6 @@
 import { GlobalStyle } from "./Base";
 
 import Header from "../src/Components/Header/Header";
-import Footer from "../src/Components/Footer/Footer";
 import LocationInput from "../src/Components/LocationInput/LocationInput";
 import Weather from "../src/Components/WeatherSection/WeatherSection";
 import { useState, useEffect } from "react";
@@ -18,22 +17,25 @@ function App() {
         inputError: false,
         locationError: false,
     });
-
     const getCurrent = () => {
         (async () => {
             try {
                 const response = await fetch(
                     `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=29488b0a4ac01b307dac2f403a8774a9&units=metric&lang=pl`
                 );
-                const result = await response.json();
-                setCurrent(result);
-                setCoords({
-                    lat: result.coord.lat,
-                    lon: result.coord.lon,
-                });
+                if (response.status === 404) {
+                    setErrorMessage({ locationError: true });
+                    return;
+                } else {
+                    const result = await response.json();
+                    setCurrent(result);
+                    setCoords({
+                        lat: result.coord.lat,
+                        lon: result.coord.lon,
+                    });
+                }
             } catch (err) {
                 console.log(err);
-                setErrorMessage({ locationError: true });
             }
         })();
     };
@@ -64,25 +66,15 @@ function App() {
             <div className="App">
                 <Header />
                 <LocationInput
-                    setCurrent={setCurrent}
-                    errorMessage={errorMessage}
-                    setErrorMessage={setErrorMessage}
-                    forecast={forecast}
-                    coords={coords}
                     location={location}
                     setLocation={setLocation}
                     getCurrent={getCurrent}
-                    getForecast={getForecast}
+                    errorMessage={errorMessage}
+                    setErrorMessage={setErrorMessage}
                 />
                 {forecast.length !== 0 && (
-                    <Weather
-                        coords={coords}
-                        current={current}
-                        forecast={forecast}
-                        getForecast={getForecast}
-                    />
+                    <Weather current={current} forecast={forecast} />
                 )}
-                <Footer />
             </div>
         </>
     );

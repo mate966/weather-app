@@ -1,17 +1,15 @@
 import {
     ForecastSection,
-    ForecastDaily,
     ForecastDailyContainer,
 } from "./ForecastSectionStyled";
 import {
     Paragraph,
     DetailsUnits,
 } from "../WeatherSection/WeatherSectionStyled";
+
 import { Icons } from "../../Base/index";
 
-const Forecast = ({ forecast, icon }) => {
-    const smallIcon = 50;
-
+const Forecast = ({ forecast }) => {
     const getMaxTemp = (n) => {
         const dailyForecast = forecast.daily.map((day) => day.temp.max);
         return Math.round(dailyForecast[n]);
@@ -28,10 +26,9 @@ const Forecast = ({ forecast, icon }) => {
 
     const date = (day) => {
         const currentDay = new Date().getDay();
+
         const forecastDay = currentDay + day;
         switch (forecastDay) {
-            case 0:
-                return "Niedziela";
             case 1:
                 return "Poniedziałek";
             case 2:
@@ -44,10 +41,14 @@ const Forecast = ({ forecast, icon }) => {
                 return "Piątek";
             case 6:
                 return "Sobota";
+            case 7:
+                return "Niedziela";
             default:
                 return null;
         }
     };
+
+    const smallIcon = 50;
 
     return (
         <ForecastSection>
@@ -79,7 +80,7 @@ const Forecast = ({ forecast, icon }) => {
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
-                <Paragraph>{date(-3)}</Paragraph>
+                <Paragraph>{date(4)}</Paragraph>
                 <Icons icon={getForecastIcon(4)} size={smallIcon} />
                 <Paragraph>
                     {getMaxTemp(4)}
@@ -88,7 +89,7 @@ const Forecast = ({ forecast, icon }) => {
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
-                <Paragraph>{date(-2)}</Paragraph>
+                <Paragraph>{date(5)}</Paragraph>
                 <Icons icon={getForecastIcon(5)} size={smallIcon} />
                 <Paragraph>
                     {getMaxTemp(5)}
@@ -97,7 +98,7 @@ const Forecast = ({ forecast, icon }) => {
                 </Paragraph>
             </ForecastDailyContainer>
             <ForecastDailyContainer>
-                <Paragraph>{date(-1)}</Paragraph>
+                <Paragraph>{date(6)}</Paragraph>
                 <Icons icon={getForecastIcon(6)} size={smallIcon} />
                 <Paragraph>
                     {getMaxTemp(6)}
